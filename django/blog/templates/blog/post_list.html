@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+  <div class="list-grid-wrapper">
   {% for post in posts %}
     <div class="post">
       <div class="date">
         {{ post.published_date }}
       </div>
-      <h2><a href="">{{ post.title }}</a></h2>
+      <h2>{{ post.title }}</h2>
       <p>{{ post.text|linebreaksbr }}</p>
+      <p><a class="btn btn-secondary" href="#" role="button">続きを読む »</a></p>
     </div>
   {% endfor %}
-{% endblock  %}
+{% endblock %}
