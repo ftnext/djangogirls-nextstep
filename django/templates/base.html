@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    >
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      rel="stylesheet"
+      crossorigin="anonymous"
+    >
+    <title>
+      {% block title %}Django Girls Blog{% endblock %}
+    </title>
+    <link 
+      href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext'
+      rel='stylesheet'
+      type='text/css'
+    >
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  </head>
+  <body>
+    <div class="page-header">
+      <h1><a href="/">Django Girls Blog</a></h1>
+    </div>
+
+    <div class="content container">
+      <div class="row">
+        <div class="col-md-8">
+          {% block content %}
+          {% endblock %}
+        </div>
+        <div class="col-md-3 offset-md-1">
+          {% block sidebar %}
+          {% endblock %}  
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
