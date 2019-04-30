@@ -1,38 +1,38 @@
 .bg-djangogirls {
-    background-color: #ff9400;
+  background-color: #ff9400;
 }
 
 .bg-light-djangogirls {
-    background-color: #ffdba8;
+  background-color: #ffdba8;
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+  font-family: 'Lobster', cursive;
 }
 
 .date {
-    color: #40E0D0;/* #828282 から変更 */
+  color: #40E0D0;/* #828282 から変更 */
 }
 
 .save {
-    float: right;
+  float: right;
 }
 
 .post-form textarea, .post-form input {
-    width: 100%;
+  width: 100%;
 }
 
 .post {
-    margin-bottom: 70px;
+  margin-bottom: 70px;
 }
 
 .post h2 {
-    color: #000000;
+  color: #000000;
 }
 
 @media (min-width: 992px) {
-    .list-grid-wrapper {
-        display: grid;
-        grid-template-columns: 50% 50%;
-    }
+  .list-grid-wrapper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
 }
