@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="post">
+    {% if post.published_date %}
+      <div class="date">
+        {{ post.published_date }}
+      </div>
+    {% endif %}
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.text|linebreaksbr }}</p>
+  </div>
+{% endblock %}
+
+{% block sidebar %}
+  {% if post.published_date %}
+    <div class="badge badge-primary">
+      公開記事
+    </div>
+    {% else %}
+    <div class="badge badge-secondary">
+      下書き
+    </div>
+  {% endif %}
+  <div>
+    作成日：{{ post.created_date }}
+  </div>
+  <div>
+    作成者：{{ post.author }}
+  </div>
+{% endblock %}

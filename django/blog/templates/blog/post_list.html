@@ -8,8 +8,14 @@
         {{ post.published_date }}
       </div>
       <h2>{{ post.title }}</h2>
-      <p>{{ post.text|linebreaksbr }}</p>
-      <p><a class="btn btn-secondary" href="#" role="button">続きを読む »</a></p>
+      <p>{{ post.text|truncatechars:50|linebreaksbr }}</p>
+      <p>
+        <a class="btn btn-secondary"
+          href="{% url 'blog:post_detail' pk=post.pk %}"
+          role="button">
+            続きを読む »
+        </a>
+      </p>
     </div>
   {% endfor %}
 {% endblock %}
