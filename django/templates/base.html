@@ -78,9 +78,33 @@
         <hr>
       </div>
     </main>
-    <footer class="container">
-      <p>© nikkie 2019</p>
+    <footer class="navbar navbar-expand-sm navbar-light bg-light">
+      <span class="navbar-brand mb-0">© nikkie 2019</span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-sign-in-alt"></i>
+            </a>
+          </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog:post_new' %}">
+                <i class="far fa-plus-square"></i>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>      
     </footer>
+    <script defer
+      src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"
+      integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ"
+      crossorigin="anonymous">
+    </script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
