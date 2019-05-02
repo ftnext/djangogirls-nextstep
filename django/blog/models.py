@@ -10,6 +10,9 @@ class Post(models.Model):
     )
     title = models.CharField('タイトル', max_length=200)
     text = models.TextField('本文')
+    categories = models.ManyToManyField(
+        'Category', related_name='posts', blank=True
+    )
     created_date = models.DateTimeField('作成日', default=timezone.now)
     published_date = models.DateTimeField('公開日', blank=True, null=True)
 
@@ -22,3 +25,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Category(models.Model):
+    name = models.CharField('カテゴリ名', max_length=30)
+
+    class Meta:
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
