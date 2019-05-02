@@ -14,10 +14,6 @@ h1, h2, h3, h4 {
   color: #40E0D0;/* #828282 から変更 */
 }
 
-.post-form textarea, .post-form input {
-  width: 100%;
-}
-
 .post {
   margin-bottom: 70px;
 }
