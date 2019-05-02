@@ -1,0 +1,4 @@
+# requirements for development
+-r base.txt
+
+flake8
