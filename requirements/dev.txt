@@ -2,3 +2,4 @@
 -r base.txt
 
 flake8
+django-debug-toolbar
