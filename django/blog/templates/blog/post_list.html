@@ -20,3 +20,17 @@
   {% endfor %}
   </div>
 {% endblock %}
+
+{% block sidebar %}
+  <h2>Categories</h2>
+  <div class="list-group">
+  {% for category in categories %}
+    <a href="#" class="list-group-item list-group-item-action">
+      {{ category.name }}
+      <span class="badge badge-primary badge-pill">
+        {{ category.posts.count }}
+      </span>
+    </a>
+  {% endfor %}
+  </div>
+{% endblock %}

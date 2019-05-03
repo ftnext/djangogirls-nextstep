@@ -6,12 +6,16 @@ from django.shortcuts import (
 from django.utils import timezone
 
 from blog.forms import PostForm
-from blog.models import Post
+from blog.models import Category, Post
 
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now())
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    categories = Category.objects.all()
+    return render(
+        request, 'blog/post_list.html',
+        {'posts': posts, 'categories': categories}
+    )
 
 
 def post_detail(request, pk):
