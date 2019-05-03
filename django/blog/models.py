@@ -11,7 +11,9 @@ class Post(models.Model):
     title = models.CharField('タイトル', max_length=200)
     text = models.TextField('本文')
     categories = models.ManyToManyField(
-        'Category', related_name='posts', blank=True
+        'Category', related_name='posts', blank=True,
+        verbose_name='カテゴリ',
+        help_text='複数選択できます。controlキー（Macではcommandキー）を使ってください'
     )
     created_date = models.DateTimeField('作成日', default=timezone.now)
     published_date = models.DateTimeField('公開日', blank=True, null=True)
