@@ -12,6 +12,7 @@ from blog.models import Category, Post
 
 class PostList(ListView):
     context_object_name = 'posts'
+    paginate_by = 6
     queryset = Post.objects.filter(published_date__lte=timezone.now())
     template_name = 'blog/post_list.html'
 
