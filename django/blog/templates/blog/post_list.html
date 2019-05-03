@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load blog_custom_tags %}
 
 {% block content %}
   <div class="list-grid-wrapper">
@@ -24,14 +25,14 @@
       <ul class="pagination">
         <li class="page-item">
           <a class="page-link"
-              href="{% url 'blog:post_list' %}?page=1">
+              href="{% url 'blog:post_list' %}?{% query_replace request 'page' 1 %}">
             First
           </a>
         </li>
         {% if page_obj.has_previous %}
           <li class="page-item">
             <a class="page-link"
-                href="{% url 'blog:post_list' %}?page={{ page_obj.previous_page_number }}"
+                href="{% url 'blog:post_list' %}?{% query_replace request 'page' page_obj.previous_page_number %}"
                 aria-label="Previous">
               ({{ page_obj.previous_page_number }}) 
               <span aria-hidden="true">&laquo;</span>
@@ -41,14 +42,14 @@
         {% endif %}
         <li class="page-item active">
           <a class="page-link"
-              href="{% url 'blog:post_list' %}?page={{ page_obj.number }}">
+              href="{% url 'blog:post_list' %}?{% query_replace request 'page' page_obj.number %}">
             {{ page_obj.number }}
           </a>
         </li>
         {% if page_obj.has_next %}
           <li class="page-item">
             <a class="page-link"
-                href="{% url 'blog:post_list' %}?page={{ page_obj.next_page_number }}"
+                href="{% url 'blog:post_list' %}?{% query_replace request 'page' page_obj.next_page_number %}"
                 aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
               <span class="sr-only">Next</span>
@@ -58,7 +59,7 @@
         {% endif %}
         <li class="page-item">
           <a class="page-link"
-              href="{% url 'blog:post_list' %}?page=last">
+              href="{% url 'blog:post_list' %}?{% query_replace request 'page' 'last' %}">
             Last ({{ page_obj.paginator.num_pages }})
           </a>
         </li>
@@ -71,7 +72,8 @@
   <h2>Categories</h2>
   <div class="list-group">
   {% for category in categories %}
-    <a href="#" class="list-group-item list-group-item-action">
+    <a href="{% url 'blog:post_list' %}?category={{ category.pk }}"
+        class="list-group-item list-group-item-action">
       {{ category.name }}
       <span class="badge badge-primary badge-pill">
         {{ category.posts.count }}

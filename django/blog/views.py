@@ -13,8 +13,14 @@ from blog.models import Category, Post
 class PostList(ListView):
     context_object_name = 'posts'
     paginate_by = 6
-    queryset = Post.objects.filter(published_date__lte=timezone.now())
     template_name = 'blog/post_list.html'
+
+    def get_queryset(self):
+        posts = Post.objects.filter(published_date__lte=timezone.now())
+        category_pk = self.request.GET.get('category')
+        if category_pk:
+            posts = posts.filter(categories__pk=int(category_pk))
+        return posts
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
