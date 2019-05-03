@@ -34,4 +34,18 @@
   <div>
     作成者：{{ post.author }}
   </div>
+  <div>
+    カテゴリ
+    <ul>
+      {% for category in post.categories.all %}
+        <li class="badge badge-primary">
+          {{ category.name }}
+        </li>
+      {% empty %}
+        <li class="badge badge-secondary">
+          未設定
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

@@ -6,12 +6,16 @@ from django.shortcuts import (
 from django.utils import timezone
 
 from blog.forms import PostForm
-from blog.models import Post
+from blog.models import Category, Post
 
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now())
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    categories = Category.objects.all()
+    return render(
+        request, 'blog/post_list.html',
+        {'posts': posts, 'categories': categories}
+    )
 
 
 def post_detail(request, pk):
@@ -27,6 +31,7 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
+            form.save_m2m()
             return redirect('blog:post_detail', pk=post.pk)
     else:
         form = PostForm()
@@ -42,6 +47,7 @@ def post_edit(request, pk):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
+            form.save_m2m()
             return redirect('blog:post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
