@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import (
     get_object_or_404,
     redirect,
@@ -20,6 +21,11 @@ class PostList(ListView):
         category_pk = self.request.GET.get('category')
         if category_pk:
             posts = posts.filter(categories__pk=int(category_pk))
+        keyword = self.request.GET.get('keyword')
+        if keyword:
+            posts = posts.filter(
+                Q(title__icontains=keyword) | Q(text__icontains=keyword)
+            )
         return posts
 
     def get_context_data(self, **kwargs):
