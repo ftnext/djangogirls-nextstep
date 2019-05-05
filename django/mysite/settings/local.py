@@ -1,5 +1,7 @@
+import os
+
 from .base import (
-    INSTALLED_APPS, MIDDLEWARE,
+    BASE_DIR, INSTALLED_APPS, MIDDLEWARE,
 )
 from .base import * # NOQA
 
@@ -19,3 +21,9 @@ MIDDLEWARE += [
 ]
 
 INTERNAL_IPS = '127.0.0.1'
+
+
+# Uploaded files
+
+MEDIA_URL = '/upload/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media_root')
