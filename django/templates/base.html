@@ -99,12 +99,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
+          {% if perms.auth.view_user %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'admin:login' %}">
               <i class="fas fa-sign-in-alt"></i>
             </a>
           </li>
-          {% if user.is_authenticated %}
+          {% endif %}
+          {% if perms.blog.add_post %}
             <li class="nav-item">
               <a class="nav-link" href="{% url 'blog:post_new' %}">
                 <i class="far fa-plus-square"></i>

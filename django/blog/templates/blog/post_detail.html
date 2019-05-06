@@ -7,7 +7,7 @@
         {{ post.published_date }}
       </div>
     {% endif %}
-    {% if user.is_authenticated %}
+    {% if perm.blog.edit_post %}
       <a class="btn btn-secondary"
           href="{% url 'blog:post_edit' pk=post.pk %}">
         <i class="far fa-edit"></i>
