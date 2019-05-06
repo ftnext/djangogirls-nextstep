@@ -2,6 +2,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group
 from django.contrib.auth.views import (
+    LoginView,
     PasswordChangeView,
     PasswordChangeDoneView,
     PasswordResetView,
@@ -14,6 +15,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
 from accounts.forms import (
+    MyLoginForm,
     MyPasswordChangeForm,
     MyPasswordResetForm,
     MySetPasswordForm,
@@ -35,6 +37,11 @@ class RegisterView(CreateView):
         user.groups.add(group)
         login(self.request, user)
         return HttpResponseRedirect(self.success_url)
+
+
+class MyLoginView(LoginView):
+    form_class = MyLoginForm
+    template_name = 'accounts/login.html'
 
 
 class PasswordChange(PasswordChangeView):
