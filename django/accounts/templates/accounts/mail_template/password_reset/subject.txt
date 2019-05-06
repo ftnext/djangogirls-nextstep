@@ -1,0 +1,1 @@
+Django Girls Blog 読者のパスワード再設定

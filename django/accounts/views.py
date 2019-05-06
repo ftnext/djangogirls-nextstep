@@ -4,6 +4,8 @@ from django.contrib.auth.models import Group
 from django.contrib.auth.views import (
     PasswordChangeView,
     PasswordChangeDoneView,
+    PasswordResetView,
+    PasswordResetDoneView,
 )
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
@@ -11,6 +13,7 @@ from django.views.generic import CreateView
 
 from accounts.forms import (
     MyPasswordChangeForm,
+    MyPasswordResetForm,
 )
 
 
@@ -39,3 +42,16 @@ class PasswordChange(PasswordChangeView):
 
 class PasswordChangeDone(PasswordChangeDoneView):
     template_name = 'accounts/password_change_done.html'
+
+
+class PasswordReset(PasswordResetView):
+    subject_template_name = 'accounts/mail_template/password_reset/subject.txt'
+    email_template_name = 'accounts/mail_template/password_reset/message.html'
+    template_name = 'accounts/password_reset_form.html'
+    form_class = MyPasswordResetForm
+    success_url = reverse_lazy('accounts:password_reset_done')
+
+
+class PasswordResetDone(PasswordResetDoneView):
+    """パスワード変更用URLをメール送付する"""
+    template_name = 'accounts/password_reset_done.html'
