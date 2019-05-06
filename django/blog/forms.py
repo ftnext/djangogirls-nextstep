@@ -1,6 +1,6 @@
 from django import forms
 
-from blog.models import Post
+from blog.models import Photo, Post
 
 
 class PostForm(forms.ModelForm):
@@ -15,3 +15,14 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'text', 'categories',)
+
+
+class PhotoForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].required = False
+        self.fields['image'].widget.attrs['class'] = 'form-control-file'
+
+    class Meta:
+        model = Photo
+        fields = ('image',)
