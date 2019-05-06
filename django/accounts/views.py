@@ -5,6 +5,8 @@ from django.contrib.auth.views import (
     PasswordChangeView,
     PasswordChangeDoneView,
     PasswordResetView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView,
     PasswordResetDoneView,
 )
 from django.http import HttpResponseRedirect
@@ -14,6 +16,7 @@ from django.views.generic import CreateView
 from accounts.forms import (
     MyPasswordChangeForm,
     MyPasswordResetForm,
+    MySetPasswordForm,
 )
 
 
@@ -55,3 +58,14 @@ class PasswordReset(PasswordResetView):
 class PasswordResetDone(PasswordResetDoneView):
     """パスワード変更用URLをメール送付する"""
     template_name = 'accounts/password_reset_done.html'
+
+
+class PasswordResetConfirm(PasswordResetConfirmView):
+    form_class = MySetPasswordForm
+    success_url = reverse_lazy('accounts:password_reset_complete')
+    template_name = 'accounts/password_reset_confirm.html'
+
+
+class PasswordResetComplete(PasswordResetCompleteView):
+    """新パスワード設定完了画面"""
+    template_name = 'accounts/password_reset_complete.html'
