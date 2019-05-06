@@ -7,7 +7,7 @@ from django.shortcuts import (
 from django.utils import timezone
 from django.views.generic import ListView
 
-from blog.forms import PostForm
+from blog.forms import PhotoForm, PostForm
 from blog.models import Category, Post
 
 
@@ -45,16 +45,26 @@ def post_detail(request, pk):
 def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
+        photo = None
+        if request.FILES.get('image'):
+            photo_form = PhotoForm(request.POST, request.FILES)
+            if photo_form.is_valid():
+                photo = photo_form.save()
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
+            post.photo = photo
             post.save()
             form.save_m2m()
             return redirect('blog:post_detail', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'blog/post_edit.html', {'form': form})
+        photo_form = PhotoForm()
+    return render(
+        request, 'blog/post_edit.html',
+        {'form': form, 'photo_form': photo_form}
+    )
 
 
 def post_edit(request, pk):
