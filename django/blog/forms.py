@@ -21,6 +21,7 @@ class PhotoForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['image'].required = False
+        self.fields['image'].widget.attrs['class'] = 'form-control-file'
 
     class Meta:
         model = Photo
