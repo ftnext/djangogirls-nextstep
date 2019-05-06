@@ -37,12 +37,18 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'blog:post_list' %}">トップ <span class="sr-only">(current)</span></a>
           </li>
+          {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:logout' %}">読者ログアウト</a>
+            </li>
+          {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'accounts:register' %}">読者登録</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">読者ログイン</a>
+            <a class="nav-link" href="{% url 'accounts:login' %}">読者ログイン</a>
           </li>
+          {% endif %}
         </ul>
         <form method="GET" action="{% url 'blog:post_list' %}"
             class="form-inline my-2 my-lg-0">
@@ -94,7 +100,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="{% url 'admin:login' %}">
               <i class="fas fa-sign-in-alt"></i>
             </a>
           </li>
