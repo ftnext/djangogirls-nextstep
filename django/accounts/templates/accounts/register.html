@@ -11,20 +11,14 @@
   {% endif %}
   <form method="POST">
     {% csrf_token %}
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password1.label_tag }}</td>
-        <td>{{ form.password1 }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password2.label_tag }}</td>
-        <td>{{ form.password2 }}</td>
-      </tr>
-    </table>
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+        {{ field }}
+        {{ field.errors }}
+      </div>
+    {% endfor %}
     <input type="submit" value="register">
   </form>
 {% endblock %}
