@@ -38,7 +38,7 @@
             <a class="nav-link" href="{% url 'blog:post_list' %}">トップ <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">読者登録</a>
+            <a class="nav-link" href="{% url 'accounts:register' %}">読者登録</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">読者ログイン</a>
@@ -64,7 +64,12 @@
             をもとに作成したブログです（絶賛開発中）。
             読者登録をするとブログ記事のブックマークができます。
           </p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">読者になる »</a></p>
+          <p>
+            <a class="btn btn-primary btn-lg"
+                href="{% url 'accounts:register' %}" role="button">
+              読者になる »
+            </a>
+          </p>
         </div>
       </div>
       <div class="container">
