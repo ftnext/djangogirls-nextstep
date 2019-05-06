@@ -69,15 +69,26 @@ def post_new(request):
 
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
+    photo = post.photo
     if request.method == 'POST':
         form = PostForm(request.POST, instance=post)
+        if request.FILES.get('image'):
+            # 画像が送信されている場合は、新規保存を試みる
+            photo_form = PhotoForm(request.POST, request.FILES)
+            if photo_form.is_valid():
+                photo = photo_form.save()
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
+            post.photo = photo
             post.save()
             form.save_m2m()
             return redirect('blog:post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form})
+        photo_form = PhotoForm(instance=photo)
+    return render(
+        request, 'blog/post_edit.html',
+        {'form': form, 'photo_form': photo_form}
+    )
