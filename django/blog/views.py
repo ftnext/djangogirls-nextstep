@@ -1,3 +1,7 @@
+from django.contrib.auth.decorators import (
+    login_required,
+    permission_required,
+)
 from django.db.models import Q
 from django.shortcuts import (
     get_object_or_404,
@@ -42,6 +46,8 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', {'post': post})
 
 
+@login_required
+@permission_required('blog.add_post', raise_exception=True)
 def post_new(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -67,6 +73,8 @@ def post_new(request):
     )
 
 
+@login_required
+@permission_required('blog.change_post', raise_exception=True)
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     photo = post.photo
