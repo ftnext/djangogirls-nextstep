@@ -42,12 +42,12 @@
               <a class="nav-link" href="{% url 'accounts:logout' %}">読者ログアウト</a>
             </li>
           {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:register' %}">読者登録</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'accounts:login' %}">読者ログイン</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:register' %}">読者登録</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'accounts:login' %}">読者ログイン</a>
+            </li>
           {% endif %}
         </ul>
         <form method="GET" action="{% url 'blog:post_list' %}"
