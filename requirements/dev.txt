@@ -1,5 +1,7 @@
 # requirements for development
 -r base.txt
 
+django==2.2
+
 flake8
 django-debug-toolbar
