@@ -27,3 +27,8 @@ INTERNAL_IPS = '127.0.0.1'
 
 MEDIA_URL = '/upload/'
 MEDIA_ROOT = os.path.join(BASE_DIR, '../media_root')
+
+
+# Email dummy
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

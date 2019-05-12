@@ -128,4 +128,4 @@ STATICFILES_DIRS = [
 
 # User login
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'blog:post_list'
