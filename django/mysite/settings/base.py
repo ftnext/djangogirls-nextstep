@@ -126,6 +126,12 @@ STATICFILES_DIRS = [
 ]
 
 
+# Uploaded files
+
+MEDIA_URL = '/upload/'
+MEDIA_ROOT = os.path.join(BASE_DIR, '../media_root')
+
+
 # User login
 
 LOGIN_REDIRECT_URL = 'blog:post_list'
