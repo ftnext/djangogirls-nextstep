@@ -125,3 +125,6 @@ dmypy.json
 
 # Editor config
 .vscode
+
+# Static files dir
+assets
