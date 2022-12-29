@@ -1,5 +1,5 @@
 from .base import (
-    INSTALLED_APPS, MIDDLEWARE,
+    BASE_DIR, INSTALLED_APPS, MIDDLEWARE,
 )
 from .base import * # NOQA
 
@@ -16,6 +16,10 @@ INSTALLED_APPS += [
 
 MIDDLEWARE += [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 INTERNAL_IPS = '127.0.0.1'
