@@ -1,2 +1,4 @@
 # requirements for production
 -r base.txt
+
+django~=2.1.1
